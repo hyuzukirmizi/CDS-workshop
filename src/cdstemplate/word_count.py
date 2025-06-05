@@ -98,6 +98,12 @@ class CorpusCounter:
         dataframe = dataframe.sort_values("token")
         return dataframe
 
+    def get_prob_dist_for_word(self, word):
+        """Returns the probability distribution of the token"""
+        word_count = self.get_token_count(word)
+        total_token = sum(self.token_counter.values())
+        return word_count / total_token
+
     def save_token_counts(self, csv_file):
         """Saves the counts of tokens from the corpus to a specified
         CSV file in alphabetical order
