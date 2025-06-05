@@ -116,6 +116,6 @@ def test_corpus_counter_prob():
     cc.add_doc(my_document)
     cc.add_doc("a")
     cc.add_doc("A")
-    assert cc.get_prob_dist_for_word('it') == 2/27
-    assert cc.get_prob_dist_for_word('a') == 3/27
-    assert cc.get_prob_dist_for_word('$') == 0
+    assert cc.get_prob_dist_for_word("it") == 2 / 27
+    assert cc.get_prob_dist_for_word("a") == 3 / 27
+    assert cc.get_prob_dist_for_word("$") == 0
