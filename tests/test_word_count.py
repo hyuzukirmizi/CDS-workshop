@@ -106,3 +106,15 @@ def test_corpus_counter_save_csv(tmp_path):
     assert my_csv.is_file()
     expected_csv = "token,count\na,2\nb,1\nc,1\nx,1\ny,1\nz,1\n"
     assert my_csv.read_text() == expected_csv
+
+
+def test_corpus_counter_prob():
+    my_document = (
+        "It was all very well to say `Drink me,' but it is wise that little Alice was not going to do that in a hurry."
+    )
+    cc = word_count.CorpusCounter(case_insensitive="True")
+    cc.add_doc(my_document)
+    cc.add_doc("a")
+    cc.add_doc("A")
+    assert cc.get_prob_dist_for_word('it') == 2/27
+    assert cc.get_prob_dist_for_word('a') == 3/27

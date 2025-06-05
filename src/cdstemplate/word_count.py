@@ -97,6 +97,14 @@ class CorpusCounter:
         dataframe = pd.DataFrame.from_records(list(self.token_counter.items()), columns=["token", "count"])
         dataframe = dataframe.sort_values("token")
         return dataframe
+    
+    def get_prob_dist_for_word(self, word):
+        """Returns the probability distribution of the word"""
+        word_count = self.get_token_count(word)
+        total_token = 0
+        for token in self.token_counter.keys():
+            total_token+= self.get_token_count(token)
+        return word_count/total_token
 
     def save_token_counts(self, csv_file):
         """Saves the counts of tokens from the corpus to a specified
